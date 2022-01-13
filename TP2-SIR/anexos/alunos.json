@@ -1,0 +1,77 @@
+[
+	{
+		"nome": "Joana Lopes",
+		"numero": "25431",
+		"observações": "Aluna dedicada e interessada pelo curso no geral",
+		"imagem": "./anexos/imagens/1.jfif"
+	},
+	{
+		"nome": "Leonardo Oliveira",
+		"numero": "25781",
+		"observações": "Aluno com muita qualidade em programação mobile",
+		"imagem": "./anexos/imagens/2.jfif"
+	},
+	{
+		"nome": "Patrícia Teixeira",
+		"numero": "24998",
+		"observações": "Aluna com algumas dificuldades mas com grande superação",
+		"imagem": "./anexos/imagens/3.jfif"
+	},
+	{
+		"nome": "João Sá",
+		"numero": "2555",
+		"observações": "Aluno autodidata com vastos conhecimentos na área da programação",
+		"imagem": "./anexos/imagens/4.jfif"
+	},
+	{
+		"nome": "Erica Zheng",
+		"numero": "2601",
+		"observações": "Aluna interessada e com gosto pela área de redes",
+		"imagem": "./anexos/imagens/5.jfif"
+	},
+	{
+		"nome": "Luana Bastos",
+		"numero": "2603",
+		"observações": "Aluna com interesse principal por Gestão de Projetos",
+		"imagem": "./anexos/imagens/6.jfif"
+	},
+	{
+		"nome": "Tiago Peixoto",
+		"numero": "25893",
+		"observações": "Aluno com muitos conhecimentos, que precisa de melhorar a organização",
+		"imagem": "./anexos/imagens/7.jfif"
+	},
+	{
+		"nome": "António Sousa",
+		"numero": "25716",
+		"observações": "Aluno focado e com experiência em desenvolvimento web",
+		"imagem": "./anexos/imagens/8.jfif"
+	},
+	{
+		"nome": "Carolina Sá",
+		"numero": "27801",
+		"observações": "Aluna com resultados de excelência e com gosto por ajudar os outros",
+		"imagem": "./anexos/imagens/9.jfif"
+	},
+	{
+		"nome": "Vasco Loureiro",
+		"numero": "25629",
+		"observações": "Aluno que demonstra enorme qualidade a todos os níveis",
+		"imagem": "./anexos/imagens/10.jfif"
+	},
+	{
+		"nome": "Alexandre Coelho",
+		"numero": "20019",
+		"observações": "Aluno inteligente e com foco enorme nos seus objetivos",
+		"imagem": "./anexos/imagens/11.jfif"
+	},
+	{
+		"nome": "Joaquim Oliveira",
+		"numero": "20751",
+		"observações": "Aluno mediano e uma pessoa muito divertida",
+		"imagem": "./anexos/imagens/12.jfif"
+	}
+
+
+
+]
