@@ -144,9 +144,11 @@ function setCard(dadosAPI) {
 	div.appendChild(infoMunicipio);
 }
 
+//
 async function getDadosCovid() {
 	const containerInformacao = document.getElementById('informacaoCovid');
 	const local = document.getElementById('paiscovid').value;
+	const x = local
 	let localPreenchido;
 	// fetch com parâmetros (se necessário)
 	let url = new URL('https://covid-19-data.p.rapidapi.com/country');
@@ -178,6 +180,10 @@ async function getDadosCovid() {
 				}
 				const message = 'Error with Status Code: ' + response.status;
 				throw new Error(message);
+			}
+
+			if(response.status = 200){
+				getDadosPopulacao(x)
 			}
 
 			const data = await response.json();
@@ -213,6 +219,68 @@ function setCard2(dadosAPI) {
 				</div>
 		</div>`;
 	div.appendChild(infoCovid);
+}
+
+//https://rapidapi.com/aldair.sr99/api/world-population/
+async function getDadosPopulacao(pais) {
+	const containerInformacao = document.getElementById('informacaoPopulacao');
+	const local = pais
+	let localPreenchido;
+	// fetch com parâmetros (se necessário)
+	let url = new URL('https://world-population.p.rapidapi.com/population');
+	const params = {
+		country_name: local
+	};
+	url.search = new URLSearchParams(params);
+
+	// fetch com headers (se necessário)
+	const options = {
+		method: 'get',
+		headers: {
+			"x-rapidapi-host": "world-population.p.rapidapi.com",
+			"x-rapidapi-key": "85638242c7mshc4592b8d3e664e7p1f0ab4jsn6e46c89d4fbd"
+		}
+	};
+
+		try {
+			const response = await fetch(url, options);
+			if (!response.ok) {
+				if (response.status = 404) {
+					containerInformacao.innerHTML = 'Local não encontrado';
+				}
+				const message = 'Error with Status Code: ' + response.status;
+				throw new Error(message);
+			}
+
+			const data = await response.json();
+			setCard3(data);
+		} catch (error) {
+			// fetch error handling
+			console.log('Error: ' + error);
+		}
+
+}
+
+function setCard3(dadosAPI) {
+	console.log(dadosAPI)
+	const dados = dadosAPI.body
+	const div = document.getElementById('informacaoPopulacao');
+	const infoPopulacao = document.createElement('div');
+	const country = dados.country_name
+	const population = dados.population
+	const ranking = dados.ranking
+
+	div.innerHTML = '';
+	infoPopulacao.innerHTML = `
+		<div class="card" style="width: 18rem;">
+			<img class="card-img-top " src="./anexos/imagens/pop.jpg" alt="Card image cap">
+				<div class="card-body lead">
+					<h5 class="card-title text-center">${country}</h5>
+					<p class="card-text">População: ${population}</p>
+					<p class="card-text">Ranking: ${ranking}</p>
+				</div>
+		</div>`;
+	div.appendChild(infoPopulacao);
 }
 
 function setEvents() {
