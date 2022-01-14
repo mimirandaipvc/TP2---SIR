@@ -215,8 +215,6 @@ function setCard2(dadosAPI) {
 	div.appendChild(infoCovid);
 }
 
-
-
 function setEvents() {
 	const btn = document.getElementById('obterInformacaoAlunos');
 	btn.addEventListener('click', () => getAlunos());
@@ -224,6 +222,7 @@ function setEvents() {
 	btn2.addEventListener('click', () => getDadosMunicipio());
 	const btn3 = document.getElementById('obterDadosCovid');
 	btn3.addEventListener('click', () => getDadosCovid());
+
 }
 
 document.addEventListener('DOMContentLoaded', () => {
