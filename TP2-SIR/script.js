@@ -64,6 +64,7 @@ function setList(dados) {
 	});
 }
 
+//https://www.geoptapi.org/
 async function getDadosMunicipio() {
 	const containerInformacao = document.getElementById('informacaoMunicipio');
 	const local = document.getElementById('local').value;
@@ -101,7 +102,6 @@ async function getDadosMunicipio() {
 			}
 
 			const data = await response.json();
-			console.log(data)
 			setCard(data);
 		} catch (error) {
 			// fetch error handling
@@ -112,9 +112,6 @@ async function getDadosMunicipio() {
 	}
 
 }
-
-
-
 
 function setCard(dadosAPI) {
 	const div = document.getElementById('informacaoMunicipio');
@@ -154,6 +151,86 @@ function setCard(dadosAPI) {
 	div.appendChild(infoMunicipio);
 }
 
+async function getDadosCovid() {
+	const containerInformacao = document.getElementById('informacaoCovid');
+	const local = document.getElementById('paiscovid').value;
+	let localPreenchido;
+	// fetch com parâmetros (se necessário)
+	let url = new URL('https://covid-19-data.p.rapidapi.com/country');
+	const params = {
+		name: local
+	};
+	url.search = new URLSearchParams(params);
+
+	// fetch com headers (se necessário)
+	const options = {
+		method: 'get',
+		headers: {
+			"x-rapidapi-host": "covid-19-data.p.rapidapi.com",
+			"x-rapidapi-key": "85638242c7mshc4592b8d3e664e7p1f0ab4jsn6e46c89d4fbd"
+		}
+	};
+
+	localPreenchido = false;
+	if (local.length > 0) {
+		localPreenchido = true;
+	}
+	if (localPreenchido) {
+		containerInformacao.innerHTML = 'A obter informação...';
+		try {
+			const response = await fetch(url, options);
+			if (!response.ok) {
+				if (response.status = 404) {
+					containerInformacao.innerHTML = 'Local não encontrado';
+				}
+				const message = 'Error with Status Code: ' + response.status;
+				throw new Error(message);
+			}
+
+			const data = await response.json();
+			setCard2(data);
+		} catch (error) {
+			// fetch error handling
+			console.log('Error: ' + error);
+		}
+	} else {
+		containerInformacao.innerHTML = 'Preencha, por favor, o local.';
+	}
+
+}
+
+function setCard2(dadosAPI) {
+	console.log(dadosAPI)
+	console.log([...dadosAPI])
+	const div = document.getElementById('informacaoCovid');
+	const infoCovid = document.createElement('div');
+	const country = dadosAPI[0].country
+	const confirmed = dadosAPI[0].confirmed
+	const recovered = dadosAPI[0].recovered
+	const deaths = dadosAPI[0].deaths
+
+
+	div.innerHTML = '';
+	infoCovid.innerHTML = `
+	 <div class="row">
+			<div class="col-5"></div>
+			<div class="col-2 align="center">
+				<div class="card" style="width: 18rem;">
+					<img class="card-img-top " src="./anexos/imagens/covid.jpg" alt="Card image cap">
+						<div class="card-body lead">
+						    <h5 class="card-title text-center">${country}</h5>
+							<p class="card-text">Casos Confirmados: ${confirmed}</p>
+							<p class="card-text">Recuperados: ${recovered}</p>
+							<p class="card-text">Mortes: ${deaths}</p>
+						</div>
+				</div>
+			</div>
+			<div class="col-5"><div>
+	</div>
+    `;
+	div.appendChild(infoCovid);
+}
+
 
 
 function setEvents() {
@@ -161,6 +238,8 @@ function setEvents() {
 	btn.addEventListener('click', () => getAlunos());
 	const btn2 = document.getElementById('obterDadosMunicipio');
 	btn2.addEventListener('click', () => getDadosMunicipio());
+	const btn3 = document.getElementById('obterDadosCovid');
+	btn3.addEventListener('click', () => getDadosCovid());
 }
 
 document.addEventListener('DOMContentLoaded', () => {
