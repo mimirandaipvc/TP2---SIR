@@ -128,26 +128,19 @@ function setCard(dadosAPI) {
 
     div.innerHTML = '';
 	infoMunicipio.innerHTML = `
-	 <div class="row">
-			<div class="col-5"></div>
-			<div class="col-2 align="center">
-				<div class="card" style="width: 18rem;">
-					<img class="card-img-top " src="./anexos/imagens/um.png" alt="Card image cap">
-						<div class="card-body lead">
-						    <h5 class="card-title text-center">${nome}</h5>
-							<p class="card-text">Site: ${sitio}</p>
-							<p class="card-text">Email: ${email}</p>
-							<p class="card-text">Tel: ${telefone}</p>
-							<p class="card-text">CP: ${codigopostal}</p>
-							<p class="card-text">População: ${populacao}</p>
-							<p class="card-text">Área(ha): ${areaha}</p>
-							<p class="card-text">Eleitores: ${eleitores}</p>
-						</div>
+		<div class="card" style="width: 18rem;">
+			<img class="card-img-top " src="./anexos/imagens/um.png" alt="Card image cap">
+				<div class="card-body lead">
+					<h5 class="card-title text-center">${nome}</h5>
+					<p class="card-text">Site: ${sitio}</p>
+					<p class="card-text">Email: ${email}</p>
+					<p class="card-text">Tel: ${telefone}</p>
+					<p class="card-text">CP: ${codigopostal}</p>
+					<p class="card-text">População: ${populacao}</p>
+					<p class="card-text">Área(ha): ${areaha}</p>
+					<p class="card-text">Eleitores: ${eleitores}</p>
 				</div>
-			</div>
-			<div class="col-5"><div>
-	</div>
-    `;
+		</div>`;
 	div.appendChild(infoMunicipio);
 }
 
@@ -200,8 +193,6 @@ async function getDadosCovid() {
 }
 
 function setCard2(dadosAPI) {
-	console.log(dadosAPI)
-	console.log([...dadosAPI])
 	const div = document.getElementById('informacaoCovid');
 	const infoCovid = document.createElement('div');
 	const country = dadosAPI[0].country
@@ -212,22 +203,15 @@ function setCard2(dadosAPI) {
 
 	div.innerHTML = '';
 	infoCovid.innerHTML = `
-	 <div class="row">
-			<div class="col-5"></div>
-			<div class="col-2 align="center">
-				<div class="card" style="width: 18rem;">
-					<img class="card-img-top " src="./anexos/imagens/covid.jpg" alt="Card image cap">
-						<div class="card-body lead">
-						    <h5 class="card-title text-center">${country}</h5>
-							<p class="card-text">Casos Confirmados: ${confirmed}</p>
-							<p class="card-text">Recuperados: ${recovered}</p>
-							<p class="card-text">Mortes: ${deaths}</p>
-						</div>
+		<div class="card" style="width: 18rem;">
+			<img class="card-img-top " src="./anexos/imagens/covid.jpg" alt="Card image cap">
+				<div class="card-body lead">
+					<h5 class="card-title text-center">${country}</h5>
+					<p class="card-text">Casos Confirmados: ${confirmed}</p>
+					<p class="card-text">Recuperados: ${recovered}</p>
+					<p class="card-text">Mortes: ${deaths}</p>
 				</div>
-			</div>
-			<div class="col-5"><div>
-	</div>
-    `;
+		</div>`;
 	div.appendChild(infoCovid);
 }
 
