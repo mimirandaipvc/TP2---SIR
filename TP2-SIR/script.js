@@ -1,27 +1,7 @@
-function readTextFile(file, callback) {
-	var rawFile = new XMLHttpRequest();
-	rawFile.overrideMimeType("application/json");
-	rawFile.open("GET", file, true);
-	rawFile.onreadystatechange = function () {
-		if (rawFile.readyState === 4 && rawFile.status == "200") {
-			callback(rawFile.responseText);
-		}
-	}
-	rawFile.send(null);
-}
-
 async function getAlunos() {
-
-	const containerInformacao = document.getElementById('obterInformacaoAlunos');
-
-		try {
-			readTextFile("./anexos/alunos.json", function (text) {
-				var data = JSON.parse(text);
-				setList(data);
-			});
-		} catch (error) {
-			console.log('Error: ' + error);
-		}
+	const alunos = await fetch('./anexos/alunos.json')
+	const data = await alunos.json()
+	setList(data)
 
 }
 
@@ -64,11 +44,44 @@ function setList(dados) {
 	});
 }
 
+//Localização
+async function getLocalizacao() {
+	// fetch com parâmetros (se necessário)
+	let url = new URL('https://ipgeolocation.abstractapi.com/v1/');
+	const params = {
+		api_key: '555ed2ebe909452096544a01ca26e3b0',
+		ip_address: ''
+	};
+	url.search = new URLSearchParams(params);
+
+		try {
+			const response = await fetch(url);
+			console.log(response)
+			if (!response.ok) {
+				if (response.status = 404) {
+					containerInformacao.innerHTML = 'Local não encontrado';
+				}
+				const message = 'Error with Status Code: ' + response.status;
+				throw new Error(message);
+			}
+
+			const data = await response.json();
+			console.log(data)
+			const cidade = data.city
+			// setCard(data);
+			getDadosMunicipio(cidade)
+		} catch (error) {
+			// fetch error handling
+			console.log('Error: ' + error);
+		}
+
+}
+
 //https://www.geoptapi.org/
-async function getDadosMunicipio() {
+async function getDadosMunicipio(local) {
 	const containerInformacao = document.getElementById('informacaoMunicipio');
-	const local = document.getElementById('local').value;
-	let localPreenchido;
+	// const local = document.getElementById('local').value;
+	// let localPreenchido;
 	// fetch com parâmetros (se necessário)
 	let url = new URL('https://geoptapi.org/municipio ');
 	const params = {
@@ -84,12 +97,12 @@ async function getDadosMunicipio() {
 	// 	}
 	// };
 
-	localPreenchido = false;
-	if (local.length > 0) {
-		localPreenchido = true;
-	}
-	if (localPreenchido) {
-		containerInformacao.innerHTML = 'A obter informação...';
+	// localPreenchido = false;
+	// if (local.length > 0) {
+	// 	localPreenchido = true;
+	// }
+	// if (localPreenchido) {
+	// 	containerInformacao.innerHTML = 'A obter informação...';
 		try {
 			const response = await fetch(url);
 			console.log(response)
@@ -107,15 +120,15 @@ async function getDadosMunicipio() {
 			// fetch error handling
 			console.log('Error: ' + error);
 		}
-	} else {
-		containerInformacao.innerHTML = 'Preencha, por favor, o local.';
-	}
+	// } else {
+	// 	containerInformacao.innerHTML = 'Preencha, por favor, o local.';
+	// }
 
 }
 
 function setCard(dadosAPI) {
 	const div = document.getElementById('informacaoMunicipio');
-    const infoMunicipio = document.createElement('div');
+	const infoMunicipio = document.createElement('div');
 	const nome = dadosAPI.nome
 	const eleitores = dadosAPI.eleitores
 	const populacao = dadosAPI.populacao
@@ -125,20 +138,19 @@ function setCard(dadosAPI) {
 	const email = dadosAPI.email
 	const codigopostal = dadosAPI.codigopostal
 
-
-    div.innerHTML = '';
+	div.innerHTML = '';
 	infoMunicipio.innerHTML = `
 		<div class="card" style="width: 18rem;">
 			<img class="card-img-top " src="./anexos/imagens/um.png" alt="Card image cap">
-				<div class="card-body lead">
-					<h5 class="card-title text-center">${nome}</h5>
-					<p class="card-text">Site: ${sitio}</p>
-					<p class="card-text">Email: ${email}</p>
-					<p class="card-text">Tel: ${telefone}</p>
-					<p class="card-text">CP: ${codigopostal}</p>
-					<p class="card-text">População: ${populacao}</p>
-					<p class="card-text">Área(ha): ${areaha}</p>
-					<p class="card-text">Eleitores: ${eleitores}</p>
+				<div class="card-body ">
+					<h5 class="card-title text-center lead">${nome}</h5>
+					<p class="card-text"><b>Site</b>: ${sitio}</p>
+					<p class="card-text"><b>Email</b>: ${email}</p>
+					<p class="card-text"><b>Tel</b>: ${telefone}</p>
+					<p class="card-text"><b>CP</b>: ${codigopostal}</p>
+					<p class="card-text"><b>População</b>: ${populacao}</p>
+					<p class="card-text"><b>Área(ha)</b>: ${areaha}</p>
+					<p class="card-text"><b>Eleitores</b>: ${eleitores}</p>
 				</div>
 		</div>`;
 	div.appendChild(infoMunicipio);
@@ -146,6 +158,7 @@ function setCard(dadosAPI) {
 
 //
 async function getDadosCovid() {
+
 	const containerInformacao = document.getElementById('informacaoCovid');
 	const local = document.getElementById('paiscovid').value;
 	const x = local
@@ -182,7 +195,7 @@ async function getDadosCovid() {
 				throw new Error(message);
 			}
 
-			if(response.status = 200){
+			if (response.status = 200) {
 				getDadosPopulacao(x)
 			}
 
@@ -242,22 +255,22 @@ async function getDadosPopulacao(pais) {
 		}
 	};
 
-		try {
-			const response = await fetch(url, options);
-			if (!response.ok) {
-				if (response.status = 404) {
-					containerInformacao.innerHTML = 'Local não encontrado';
-				}
-				const message = 'Error with Status Code: ' + response.status;
-				throw new Error(message);
+	try {
+		const response = await fetch(url, options);
+		if (!response.ok) {
+			if (response.status = 404) {
+				containerInformacao.innerHTML = 'Local não encontrado';
 			}
-
-			const data = await response.json();
-			setCard3(data);
-		} catch (error) {
-			// fetch error handling
-			console.log('Error: ' + error);
+			const message = 'Error with Status Code: ' + response.status;
+			throw new Error(message);
 		}
+
+		const data = await response.json();
+		setCard3(data);
+	} catch (error) {
+		// fetch error handling
+		console.log('Error: ' + error);
+	}
 
 }
 
@@ -286,8 +299,10 @@ function setCard3(dadosAPI) {
 function setEvents() {
 	const btn = document.getElementById('obterInformacaoAlunos');
 	btn.addEventListener('click', () => getAlunos());
+	// const btn = document.getElementById('obterInformacaoAlunos');
+	// btn.addEventListener('click', () => getLocalizacao());
 	const btn2 = document.getElementById('obterDadosMunicipio');
-	btn2.addEventListener('click', () => getDadosMunicipio());
+	btn2.addEventListener('click', () => getLocalizacao());
 	const btn3 = document.getElementById('obterDadosCovid');
 	btn3.addEventListener('click', () => getDadosCovid());
 

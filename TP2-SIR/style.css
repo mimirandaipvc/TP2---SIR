@@ -1,6 +1,3 @@
-body {
-	background-color:AliceBlue
-}
 
 .center {
   text-align: center;
@@ -11,6 +8,14 @@ body {
         float: none;
         margin-bottom: 10px;
 }
+
+#um, #dois, #tres {
+	padding: 5vh;
+	border-bottom-width:thin;
+	border-bottom-style: solid;
+	border-bottom-color: cornflowerblue;
+}
+
 
 
 

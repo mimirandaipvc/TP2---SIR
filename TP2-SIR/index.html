@@ -40,54 +40,61 @@
 			</div>
 		</div>
 		<br>
-		<div class="row">
-			<div class="col-8">
-				<h1 class="center display-6" id="infop">Informações Pessoais</h1><br>
-				<p class="lead"><b>Nome:</b> Miguel Miranda</p>
-				<p class="lead"><b>Número:</b> 20785</p>
-				<p class="lead"><b>Curso:</b> Engenharia Informática</p>
-				<p class="lead"><b>Apresentação Pessoal:</b> Sou o Miguel, tenho 22 anos e sou natural de Barcelos.
-					Considero-me um jovem dinâmico, responsável e empenhado, com muita vontade de aprender e tornar-se um bom profissional.
-					A nível pessoal gosto de passar tempo com a minha família, praticar atividade física e ver Futebol.</p>
-			</div>
-			<div class="col-4">
-				<br>
-				<img src="anexos/foto.jpg" alt="..." class="img-thumbnail">
-			</div>
-		</div><br>
-		<div class="row">
-			<div class="col-12">
-				<h1 class="center display-6" id="infoal">Informação sobre Alunos do 3ºano de Eng. Informática 2021/22</h1><br>
-				<p class="center lead">
-					<a class="btn btn-primary btn-lg " id="obterInformacaoAlunos" role="button">Obter informação</a>
-				</p>
-				<div class="list-group" id="informacaoAlunos"></div>
-			</div>
-		</div>
-		<div class="row" id="pesquisas">
-			<div class="col-6">
+		<section id="um">
+			<div class="row">
+				<div class="col-8">
+					<h1 class="center display-6" id="infop">Informações Pessoais</h1><br>
+					<p class="lead"><b>Nome:</b> Miguel Miranda</p>
+					<p class="lead"><b>Número:</b> 20785</p>
+					<p class="lead"><b>Curso:</b> Engenharia Informática</p>
+					<p class="lead"><b>Apresentação Pessoal:</b> Sou o Miguel, tenho 22 anos e sou natural de Barcelos.
+						Considero-me um jovem dinâmico, responsável e empenhado, com muita vontade de aprender e tornar-se um bom
+						profissional.
+						A nível pessoal gosto de passar tempo com a minha família, praticar atividade física e ver Futebol.</p>
+				</div>
+				<div class="col-4">
+					<br>
+					<img src="anexos/foto.jpg" alt="..." class="img-thumbnail">
+				</div>
+			</div><br>
+		</section>
+		<section id="dois">
+			<div class="row">
 				<div class="col-12">
-					<h1 class="center display-6">Pesquisa de Dados por Município</h1><br>
-					<input type="text" class="form-control" name="local" id="local" aria-describedby="helpId" placeholder=""><br>
+					<h1 class="center display-6" id="infoal">Informação sobre Alunos do 3ºano de Eng. Informática 2021/22</h1><br>
 					<p class="center lead">
-						<a class="btn btn-primary btn-lg" id="obterDadosMunicipio" role="button">Pesquisar</a>
+						<a class="btn btn-primary btn-lg " id="obterInformacaoAlunos" role="button">Obter informação</a>
 					</p>
-					<div id="informacaoMunicipio"></div>
+					<div class="list-group" id="informacaoAlunos"></div>
 				</div>
 			</div>
-			<div class="col-6">
-				<div class="col-12">
-					<h1 class="center display-6">Informação - Covid-19</h1><br>
-					<input type="text" class="form-control" name="paiscovid" id="paiscovid" aria-describedby="helpId"
-						placeholder=""><br>
-					<p class="center lead">
-						<a class="btn btn-primary btn-lg" id="obterDadosCovid" role="button">Pesquisar</a>
-					</p>
-					<div id="informacaoCovid"></div>
-					<div id="informacaoPopulacao"></div>
+		</section>
+		<section id="tres">
+			<div class="row" id="pesquisas">
+				<div class="col-6">
+					<div class="col-12">
+						<h1 class="center display-6" id="infoatual">Localização Atual</h1><br>
+						<!-- <input type="text" class="form-control" name="local" id="local" aria-describedby="helpId" placeholder=""><br> -->
+						<p class="center lead">
+							<a class="btn btn-outline-dark btn-lg " id="obterDadosMunicipio" role="button">Localizar-me</a>
+						</p>
+						<div id="informacaoMunicipio"></div>
+					</div>
+				</div>
+				<div class="col-6">
+					<div class="col-12">
+						<h1 class="center display-6" id="infocovid">Informação - Covid-19</h1><br>
+						<input type="text" class="form-control" name="paiscovid" id="paiscovid" aria-describedby="helpId"
+							placeholder="Introduza o País.."><br>
+						<p class="center lead">
+							<a class="btn btn-primary btn-lg" id="obterDadosCovid" role="button">Pesquisar</a>
+						</p>
+						<div id="informacaoCovid"></div>
+						<div id="informacaoPopulacao"></div>
+					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 	</div>
 	<footer>
 		<nav class="navbar navbar-expand-lg navbar-light bg-info">
@@ -104,24 +111,3 @@
 </html>
 
 
-<!-- <div class="row">
-	<div class="col-12">
-		<h1 class="center display-6">Pesquisa de Dados por Município</h1><br>
-		<input type="text" class="form-control" name="local" id="local" aria-describedby="helpId" placeholder=""><br>
-		<p class="center lead">
-			<a class="btn btn-primary btn-lg" id="obterDadosMunicipio" role="button">Pesquisar</a>
-		</p>
-		<div id="informacaoMunicipio"></div>
-	</div>
-</div>
-<div class="row">
-	<div class="col-12">
-		<h1 class="center display-6">Informação - Covid-19</h1><br>
-		<input type="text" class="form-control" name="paiscovid" id="paiscovid" aria-describedby="helpId"
-			placeholder=""><br>
-		<p class="center lead">
-			<a class="btn btn-primary btn-lg" id="obterDadosCovid" role="button">Pesquisar</a>
-		</p>
-		<div id="informacaoCovid"></div>
-	</div>
-</div> -->
