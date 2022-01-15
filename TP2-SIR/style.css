@@ -8,7 +8,6 @@ body {
 
 nav {
 	padding: 20px;
-	background-color: black;
 }
 
 #n, #n1, #n2, #n3 {
@@ -55,3 +54,5 @@ nav {
 	border-color: steelblue;
 	color: white
 }
+
+
