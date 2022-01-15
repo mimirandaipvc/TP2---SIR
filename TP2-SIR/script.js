@@ -125,7 +125,7 @@ function setCard(dadosAPI) {
 
 	div.innerHTML = '';
 	infoMunicipio.innerHTML = `
-		<div class="card" style="width: 18rem;">
+		<div class="card">
 			<img class="card-img-top " src="./anexos/imagens/um.png" alt="Card image cap">
 				<div class="card-body lead">
 					<h5 class="card-title text-center lead">${nome}</h5>
@@ -205,7 +205,7 @@ function setCard2(dadosAPI) {
 
 	div.innerHTML = '';
 	infoCovid.innerHTML = `
-		<div class="card" style="width: 18rem;">
+		<div class="card">
 			<img class="card-img-top " src="./anexos/imagens/covid.jpg" alt="Card image cap">
 				<div class="card-body lead">
 					<h5 class="card-title text-center">${country}</h5>
@@ -266,7 +266,7 @@ function setCard3(dadosAPI) {
 
 	div.innerHTML = '';
 	infoPopulacao.innerHTML = `
-		<div class="card" style="width: 18rem;">
+		<div class="card">
 			<img class="card-img-top " src="./anexos/imagens/pop.jpg" alt="Card image cap">
 				<div class="card-body lead">
 					<h5 class="card-title text-center">${country}</h5>
