@@ -12,7 +12,7 @@
 
 <body>
 	<header>
-		<nav class="navbar navbar-expand-lg navbar-light bg-info">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<a class="navbar-brand" href="#">Informações</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
 				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,7 +63,7 @@
 				<div class="col-12">
 					<h1 class="center display-6" id="infoal">Informação sobre Alunos do 3ºano de Eng. Informática 2021/22</h1><br>
 					<p class="center lead">
-						<a class="btn btn-primary btn-lg " id="obterInformacaoAlunos" role="button">Obter informação</a>
+						<a class="btn  btn-lg" id="obterInformacaoAlunos" role="button">Obter informação</a>
 					</p>
 					<div class="list-group" id="informacaoAlunos"></div>
 				</div>
@@ -87,7 +87,7 @@
 						<input type="text" class="form-control" name="paiscovid" id="paiscovid" aria-describedby="helpId"
 							placeholder="Introduza o País.."><br>
 						<p class="center lead">
-							<a class="btn btn-primary btn-lg" id="obterDadosCovid" role="button">Pesquisar</a>
+							<a class="btn  btn-lg" id="obterDadosCovid" role="button">Pesquisar</a>
 						</p>
 						<div id="informacaoCovid"></div>
 						<div id="informacaoPopulacao"></div>
@@ -96,12 +96,13 @@
 			</div>
 		</section>
 	</div>
-	<footer>
-		<nav class="navbar navbar-expand-lg navbar-light bg-info">
-			<div class="collapse navbar-collapse center " id="navbarNav">
-				<div class="lead text-center">Desenvolvido por: Miguel Miranda</div>
-			</div>
-		</nav>
+	<footer class="bg-light text-center text-lg-start">
+		<!-- Copyright -->
+		<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+			© 2020 Copyright:
+			<a class="text-dark" href="#infop">Miguel Miranda</a>
+		</div>
+		<!-- Copyright -->
 	</footer>
 	<script src="./anexos/alunos.json"></script>
 	<script src="script.js"></script>

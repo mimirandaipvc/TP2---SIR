@@ -4,6 +4,8 @@
   text-align: center;
 }
 
+
+
 .card {
 	margin: 0 auto;
 	float: none;
@@ -14,7 +16,13 @@
 	padding: 5vh;
 	border-bottom-width:thin;
 	border-bottom-style: solid;
-	border-bottom-color: cornflowerblue;
+	border-bottom-color: deepskyblue
+}
+
+.btn {
+	background-color: deepskyblue;
+	border-color:steelblue;
+	color: white
 }
 
 #tres {
