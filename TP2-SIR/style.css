@@ -1,10 +1,48 @@
-* {}
-
-.center {
-  text-align: center;
+* {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+body {
+	background-color: #e3f2fd;
+}
 
+nav {
+	padding: 20px;
+	background-color: black;
+}
+
+#n, #n1, #n2, #n3 {
+	color: white
+}
+
+#cabeçalho {
+	background-image: url('./anexos/imagens/viana.jpeg');
+}
+
+#titulopag {
+	color: black;
+	font-style: italic
+}
+
+#fim {
+	background-color: black;
+	color: white
+}
+
+#um, #dois {
+	padding: 20px;
+	border-bottom-width: thin;
+	border-bottom-style: solid;
+	border-bottom-color: deepskyblue;
+}
+
+#tres {
+	padding: 20px;
+}
+
+.center {
+	text-align: center;
+}
 
 .card {
 	margin: 0 auto;
@@ -12,24 +50,8 @@
 	margin-bottom: 10px;
 }
 
-#um, #dois {
-	padding: 5vh;
-	border-bottom-width:thin;
-	border-bottom-style: solid;
-	border-bottom-color: deepskyblue
-}
-
 .btn {
 	background-color: deepskyblue;
-	border-color:steelblue;
+	border-color: steelblue;
 	color: white
 }
-
-#tres {
-	padding: 5vh;
-
-}
-
-
-
-

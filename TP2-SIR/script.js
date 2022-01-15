@@ -1,3 +1,4 @@
+//Obter Alunos (JSON)
 async function getAlunos() {
 	const alunos = await fetch('./anexos/alunos.json')
 	const data = await alunos.json()
@@ -44,9 +45,9 @@ function setList(dados) {
 	});
 }
 
-//Localização
+//Obter Localização (https://www.abstractapi.com/ip-geolocation-api)
 async function getLocalizacao() {
-	// fetch com parâmetros (se necessário)
+
 	let url = new URL('https://ipgeolocation.abstractapi.com/v1/');
 	const params = {
 		api_key: '555ed2ebe909452096544a01ca26e3b0',
@@ -54,34 +55,31 @@ async function getLocalizacao() {
 	};
 	url.search = new URLSearchParams(params);
 
-		try {
-			const response = await fetch(url);
-			console.log(response)
-			if (!response.ok) {
-				if (response.status = 404) {
-					containerInformacao.innerHTML = 'Local não encontrado';
-				}
-				const message = 'Error with Status Code: ' + response.status;
-				throw new Error(message);
+	try {
+		const response = await fetch(url);
+		console.log(response)
+		if (!response.ok) {
+			if (response.status = 404) {
+				containerInformacao.innerHTML = 'Localização não encontrada';
 			}
-
-			const data = await response.json();
-			console.log(data)
-			const cidade = data.city
-			// setCard(data);
-			getDadosMunicipio(cidade)
-		} catch (error) {
-			// fetch error handling
-			console.log('Error: ' + error);
+			const message = 'Error with Status Code: ' + response.status;
+			throw new Error(message);
 		}
+
+		const data = await response.json();
+		const cidade = data.city
+		getDadosMunicipio(cidade)
+	} catch (error) {
+		console.log('Error: ' + error);
+	}
 
 }
 
-//https://www.geoptapi.org/
+//Obter Dados Concelho (https://www.geoptapi.org/)
 async function getDadosMunicipio(local) {
 	const containerInformacao = document.getElementById('informacaoMunicipio');
-	// const local = document.getElementById('local').value;
 	// let localPreenchido;
+
 	// fetch com parâmetros (se necessário)
 	let url = new URL('https://geoptapi.org/municipio ');
 	const params = {
@@ -89,40 +87,27 @@ async function getDadosMunicipio(local) {
 	};
 	url.search = new URLSearchParams(params);
 
-	// fetch com headers (se necessário)
-	// const options = {
-	// 	method: 'get',
-	// 	headers: {
-	// 		"Content-Type": "application/json"
-	// 	}
-	// };
 
-	// localPreenchido = false;
-	// if (local.length > 0) {
-	// 	localPreenchido = true;
-	// }
-	// if (localPreenchido) {
-	// 	containerInformacao.innerHTML = 'A obter informação...';
-		try {
-			const response = await fetch(url);
-			console.log(response)
-			if (!response.ok) {
-				if (response.status = 404) {
-					containerInformacao.innerHTML = 'Local não encontrado';
-				}
-				const message = 'Error with Status Code: ' + response.status;
-				throw new Error(message);
+
+
+	containerInformacao.innerHTML = 'A obter informação...';
+	try {
+		const response = await fetch(url);
+		console.log(response)
+		if (!response.ok) {
+			if (response.status = 404) {
+				containerInformacao.innerHTML = 'Informação Indisponível';
 			}
-
-			const data = await response.json();
-			setCard(data);
-		} catch (error) {
-			// fetch error handling
-			console.log('Error: ' + error);
+			const message = 'Error with Status Code: ' + response.status;
+			throw new Error(message);
 		}
-	// } else {
-	// 	containerInformacao.innerHTML = 'Preencha, por favor, o local.';
-	// }
+
+		const data = await response.json();
+		setCard(data);
+	} catch (error) {
+		// fetch error handling
+		console.log('Error: ' + error);
+	}
 
 }
 
@@ -142,7 +127,7 @@ function setCard(dadosAPI) {
 	infoMunicipio.innerHTML = `
 		<div class="card" style="width: 18rem;">
 			<img class="card-img-top " src="./anexos/imagens/um.png" alt="Card image cap">
-				<div class="card-body ">
+				<div class="card-body lead">
 					<h5 class="card-title text-center lead">${nome}</h5>
 					<p class="card-text"><b>Site</b>: ${sitio}</p>
 					<p class="card-text"><b>Email</b>: ${email}</p>
@@ -156,21 +141,19 @@ function setCard(dadosAPI) {
 	div.appendChild(infoMunicipio);
 }
 
-//
+//Obter Dados Covid (https://rapidapi.com/Gramzivi/api/covid-19-data/)
 async function getDadosCovid() {
 
 	const containerInformacao = document.getElementById('informacaoCovid');
 	const local = document.getElementById('paiscovid').value;
-	const x = local
 	let localPreenchido;
-	// fetch com parâmetros (se necessário)
+
 	let url = new URL('https://covid-19-data.p.rapidapi.com/country');
 	const params = {
 		name: local
 	};
 	url.search = new URLSearchParams(params);
 
-	// fetch com headers (se necessário)
 	const options = {
 		method: 'get',
 		headers: {
@@ -196,13 +179,13 @@ async function getDadosCovid() {
 			}
 
 			if (response.status = 200) {
-				getDadosPopulacao(x)
+				getDadosPopulacao(local)
 			}
 
 			const data = await response.json();
 			setCard2(data);
 		} catch (error) {
-			// fetch error handling
+
 			console.log('Error: ' + error);
 		}
 	} else {
@@ -234,19 +217,17 @@ function setCard2(dadosAPI) {
 	div.appendChild(infoCovid);
 }
 
-//https://rapidapi.com/aldair.sr99/api/world-population/
+//Obter Dados População (https://rapidapi.com/aldair.sr99/api/world-population/)
 async function getDadosPopulacao(pais) {
 	const containerInformacao = document.getElementById('informacaoPopulacao');
 	const local = pais
-	let localPreenchido;
-	// fetch com parâmetros (se necessário)
+
 	let url = new URL('https://world-population.p.rapidapi.com/population');
 	const params = {
 		country_name: local
 	};
 	url.search = new URLSearchParams(params);
 
-	// fetch com headers (se necessário)
 	const options = {
 		method: 'get',
 		headers: {
@@ -259,7 +240,7 @@ async function getDadosPopulacao(pais) {
 		const response = await fetch(url, options);
 		if (!response.ok) {
 			if (response.status = 404) {
-				containerInformacao.innerHTML = 'Local não encontrado';
+				containerInformacao.innerHTML = 'Informação Indisponível';
 			}
 			const message = 'Error with Status Code: ' + response.status;
 			throw new Error(message);
@@ -299,8 +280,6 @@ function setCard3(dadosAPI) {
 function setEvents() {
 	const btn = document.getElementById('obterInformacaoAlunos');
 	btn.addEventListener('click', () => getAlunos());
-	// const btn = document.getElementById('obterInformacaoAlunos');
-	// btn.addEventListener('click', () => getLocalizacao());
 	const btn2 = document.getElementById('obterDadosMunicipio');
 	btn2.addEventListener('click', () => getLocalizacao());
 	const btn3 = document.getElementById('obterDadosCovid');
